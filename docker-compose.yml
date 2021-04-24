@@ -1,0 +1,41 @@
+version: '3'
+services:
+  exporter:
+    image: prom/node-exporter
+    command: --collector.textfile.directory=/textfiles
+    volumes:
+      - ./factoriodata/script-output/graftorio:/textfiles
+    expose:
+      - 9100/tcp
+    depends_on:
+      - ofsm
+  prometheus:
+    user: root
+    image: prom/prometheus
+    volumes:
+      - ./data/prometheus:/prometheus
+      - ./data/prometheus.yml:/etc/prometheus/prometheus.yml
+    expose:
+      - 9090/tcp
+    depends_on:
+      - ofsm
+  grafana:
+    user: root
+    image: grafana/grafana
+    volumes:
+      - ./data/grafana:/var/lib/grafana
+    ports:
+      - 3000:3000
+    depends_on:
+      - ofsm
+  ofsm:
+    image: ofsm/ofsm:latest
+    ports:
+      - 80:80
+      - 34197:34197/udp
+    volumes:
+      - ./factoriodata:/opt/factorio/
+      - ./fsmdata/data:/opt/fsm-data
+      - ./fsmdata/factorio/saves:/opt/factorio/saves
+      - ./fsmdata/factorio/mods:/opt/factorio/mods
+      - ./fsmdata/factorio/config:/opt/factorio/config
