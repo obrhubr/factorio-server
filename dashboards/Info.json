@@ -18,7 +18,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 6,
+  "id": 1,
   "links": [
     {
       "icon": "external link",
@@ -48,7 +48,6 @@
       "description": "",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -82,9 +81,10 @@
           "fields": "",
           "values": false
         },
+        "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.0",
+      "pluginVersion": "7.5.4",
       "targets": [
         {
           "expr": "factorio_tick/60",
@@ -104,7 +104,6 @@
       "description": "",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -137,11 +136,13 @@
           "fields": "",
           "values": false
         },
+        "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.0",
+      "pluginVersion": "7.5.4",
       "targets": [
         {
+          "exemplar": true,
           "expr": "factorio_online_players",
           "instant": true,
           "interval": "",
@@ -159,9 +160,6 @@
       "description": "",
       "fieldConfig": {
         "defaults": {
-          "custom": {
-            "align": null
-          },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -215,9 +213,10 @@
           "fields": "/^version$/",
           "values": false
         },
+        "text": {},
         "textMode": "value"
       },
-      "pluginVersion": "7.1.0",
+      "pluginVersion": "7.5.4",
       "targets": [
         {
           "expr": "factorio_mods{name=\"base\"}==1",
@@ -258,7 +257,8 @@
         "defaults": {
           "custom": {
             "align": null,
-            "displayMode": "auto"
+            "displayMode": "auto",
+            "filterable": false
           },
           "mappings": [],
           "thresholds": {
@@ -274,7 +274,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 11,
+        "h": 6,
         "w": 6,
         "x": 18,
         "y": 1
@@ -289,7 +289,7 @@
           }
         ]
       },
-      "pluginVersion": "7.1.0",
+      "pluginVersion": "7.5.4",
       "targets": [
         {
           "expr": "factorio_mods{name!=\"base\", name!=\"graftorio\", name!=\"stdlib\", name!~\"nilaus_.*\", name!~\"tvc_.*\"}==1",
@@ -326,9 +326,6 @@
       "description": "",
       "fieldConfig": {
         "defaults": {
-          "custom": {
-            "align": null
-          },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -382,9 +379,10 @@
           "fields": "",
           "values": false
         },
+        "text": {},
         "textMode": "value"
       },
-      "pluginVersion": "7.1.0",
+      "pluginVersion": "7.5.4",
       "targets": [
         {
           "expr": "factorio_seed",
@@ -417,199 +415,13 @@
       "type": "stat"
     },
     {
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "decimals": 6,
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "rgb(255, 255, 255)",
-                "value": null
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 6,
-        "x": 0,
-        "y": 7
-      },
-      "id": 49,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "7.1.0",
-      "targets": [
-        {
-          "expr": "factorio_evolution{force=\"enemy\", type=\"total\"}",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "{{type}}",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Evolution",
-      "type": "stat"
-    },
-    {
-      "datasource": null,
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {
-            "align": null
-          },
-          "decimals": 1,
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "rgb(255, 255, 255)",
-                "value": null
-              }
-            ]
-          },
-          "unit": "percentunit"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 12,
-        "x": 6,
-        "y": 7
-      },
-      "id": 50,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "center",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "7.1.0",
-      "targets": [
-        {
-          "expr": "factorio_evolution{force=\"enemy\", type!=\"total\"}",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "{{type}}",
-          "refId": "A"
-        },
-        {
-          "expr": "sum(factorio_evolution{force=\"enemy\", type!=\"total\"})",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "Sum",
-          "refId": "B"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Evolution Composition",
-      "transformations": [
-        {
-          "id": "calculateField",
-          "options": {
-            "alias": "By Killing Spawners",
-            "binary": {
-              "left": "by_killing_spawners",
-              "operator": "/",
-              "reducer": "sum",
-              "right": "Sum"
-            },
-            "mode": "binary",
-            "reduce": {
-              "reducer": "sum"
-            }
-          }
-        },
-        {
-          "id": "calculateField",
-          "options": {
-            "alias": "By Pollution",
-            "binary": {
-              "left": "by_polution",
-              "operator": "/",
-              "reducer": "sum",
-              "right": "Sum"
-            },
-            "mode": "binary",
-            "reduce": {
-              "reducer": "sum"
-            }
-          }
-        },
-        {
-          "id": "calculateField",
-          "options": {
-            "alias": "By Time",
-            "binary": {
-              "left": "by_time",
-              "operator": "/",
-              "reducer": "sum",
-              "right": "Sum"
-            },
-            "mode": "binary",
-            "reduce": {
-              "reducer": "sum"
-            }
-          }
-        },
-        {
-          "id": "organize",
-          "options": {
-            "excludeByName": {
-              "Sum": true,
-              "Time": true,
-              "by_killing_spawners": true,
-              "by_polution": true,
-              "by_time": true
-            },
-            "indexByName": {},
-            "renameByName": {}
-          }
-        }
-      ],
-      "type": "stat"
-    },
-    {
       "collapsed": false,
       "datasource": null,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 12
+        "y": 7
       },
       "id": 61,
       "panels": [],
@@ -620,7 +432,6 @@
       "datasource": null,
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "decimals": 0,
           "mappings": [],
           "max": 1,
@@ -642,7 +453,7 @@
         "h": 6,
         "w": 8,
         "x": 0,
-        "y": 13
+        "y": 8
       },
       "id": 58,
       "options": {
@@ -655,9 +466,10 @@
           "values": false
         },
         "showThresholdLabels": false,
-        "showThresholdMarkers": false
+        "showThresholdMarkers": false,
+        "text": {}
       },
-      "pluginVersion": "7.1.0",
+      "pluginVersion": "7.5.4",
       "targets": [
         {
           "expr": "factorio_research_queue{index=\"1\"}",
@@ -678,7 +490,8 @@
       "fieldConfig": {
         "defaults": {
           "custom": {
-            "align": null
+            "align": null,
+            "filterable": false
           },
           "mappings": [],
           "max": 1,
@@ -700,7 +513,7 @@
         "h": 6,
         "w": 16,
         "x": 8,
-        "y": 13
+        "y": 8
       },
       "id": 59,
       "options": {
@@ -712,7 +525,7 @@
           }
         ]
       },
-      "pluginVersion": "7.1.0",
+      "pluginVersion": "7.5.4",
       "targets": [
         {
           "expr": "factorio_research_queue{index!=\"1\"}",
@@ -762,7 +575,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 19
+        "y": 14
       },
       "id": 10,
       "panels": [],
@@ -773,7 +586,6 @@
       "datasource": null,
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -792,7 +604,7 @@
         "h": 6,
         "w": 8,
         "x": 0,
-        "y": 20
+        "y": 15
       },
       "id": 1,
       "options": {
@@ -807,9 +619,10 @@
           "fields": "",
           "values": false
         },
+        "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.0",
+      "pluginVersion": "7.5.4",
       "targets": [
         {
           "expr": "factorio_items_launched_total",
@@ -829,7 +642,6 @@
       "datasource": null,
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "mappings": [],
           "min": 0,
           "thresholds": {
@@ -856,7 +668,7 @@
         "h": 6,
         "w": 16,
         "x": 8,
-        "y": 20
+        "y": 15
       },
       "id": 2,
       "options": {
@@ -871,9 +683,10 @@
           "fields": "",
           "values": false
         },
+        "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.0",
+      "pluginVersion": "7.5.4",
       "targets": [
         {
           "expr": "rate(factorio_items_launched_total[5m])*80*60",
@@ -895,7 +708,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 26
+        "y": 21
       },
       "id": 12,
       "panels": [],
@@ -907,7 +720,6 @@
       "description": "",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "decimals": 0,
           "mappings": [],
           "min": 0,
@@ -928,7 +740,7 @@
         "h": 6,
         "w": 24,
         "x": 0,
-        "y": 27
+        "y": 22
       },
       "id": 20,
       "options": {
@@ -943,9 +755,10 @@
           "fields": "",
           "values": false
         },
+        "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.0",
+      "pluginVersion": "7.5.4",
       "targets": [
         {
           "expr": "sum(rate(factorio_kill_count_input{name=~\".*-spawner\"}[5m])*80)",
@@ -994,7 +807,6 @@
       "description": "",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "decimals": 0,
           "mappings": [],
           "min": 0,
@@ -1023,7 +835,7 @@
         "h": 6,
         "w": 24,
         "x": 0,
-        "y": 33
+        "y": 28
       },
       "id": 45,
       "options": {
@@ -1038,9 +850,10 @@
           "fields": "",
           "values": false
         },
+        "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.0",
+      "pluginVersion": "7.5.4",
       "targets": [
         {
           "expr": "sum(rate(factorio_kill_count_output{name=~\".*-robot\"}[5m])*80)",
@@ -1086,7 +899,7 @@
     }
   ],
   "refresh": "30s",
-  "schemaVersion": 26,
+  "schemaVersion": 27,
   "style": "dark",
   "tags": [
     "factorio"
@@ -1109,5 +922,5 @@
   "timezone": "",
   "title": "#Infos",
   "uid": "hb4b2-4Gz",
-  "version": 20
+  "version": 3
 }
